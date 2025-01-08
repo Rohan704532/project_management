@@ -26,11 +26,11 @@ app.get('/', (req, res) => {
 
 app.use('/projects', projectRoutes);
 app.use('/tasks', tasksRoutes);
-app.use('/search',searchRoutes);
-app.use('/users',userRoutes);
+app.use('/search', searchRoutes);
+app.use('/users', userRoutes);
 app.use("/teams", teamRoutes);
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
+const port = Number(process.env.PORT) || 3000;
+app.listen(port, "0.0.0.0", () => {
     console.log(`Server running on port ${port}`)
 })
