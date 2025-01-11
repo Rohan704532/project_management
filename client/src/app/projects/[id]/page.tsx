@@ -12,8 +12,8 @@ interface Params {
   id: string;
 }
 
-type Props = {
-  params: { id: string };
+interface Props {
+  params: Promise<Params>;
 }
 
 const Project = ({ params }: Props) => {
