@@ -8,6 +8,10 @@ import Timeline from '../Timeline';
 import Table from "../Table"
 import ModalNewTask from '@/components/ModalNewTask';
 
+interface Params {
+  id: string;
+}
+
 type Props = {
   params: { id: string };
 }
@@ -19,7 +23,7 @@ const Project = ({ params }: Props) => {
   useEffect(() => {
     // Unwrap the params if it's a Promise
     const fetchParams = async () => {
-      const resolvedParams = await params; // Await the promise if params is a Promise
+      const resolvedParams: Params = await params; // Await the promise if params is a Promise
       setId(resolvedParams.id);
     };
 
