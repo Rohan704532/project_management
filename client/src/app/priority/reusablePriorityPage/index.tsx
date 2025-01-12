@@ -8,6 +8,7 @@ import { dataGridClassNames, dataGridSxStyles } from "@/lib/utils";
 import {
     Priority,
     Task,
+    useGetAuthUserQuery,
     //   useGetAuthUserQuery,
     useGetTasksByUserQuery,
 } from "@/state/api";
@@ -76,19 +77,19 @@ const columns: GridColDef[] = [
 const ReusablePriorityPage = ({ priority }: Props) => {
     const [view, setView] = useState("list");
     const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
-
-    const userId = 1;
+    const { data: currentUser } = useGetAuthUserQuery({});
+    const userId = currentUser?.userDetails?.userId ?? null;
     // const { data: tasks } = useGetTasksByUserQuery(userId || 0, {
     //     skip: userId === null,
     // });
     //   const userId = currentUser?.userDetails?.userId ?? null;
-      const {
+    const {
         data: tasks,
         isLoading,
         isError: isTasksError,
-      } = useGetTasksByUserQuery(userId || 0, {
+    } = useGetTasksByUserQuery(userId || 0, {
         skip: userId === null,
-      });
+    });
 
     const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
 
